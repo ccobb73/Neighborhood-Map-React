@@ -46,21 +46,9 @@ class App extends Component {
   }
   componentDidMount() {
     window.initMap = this.initMap;
-    // https://www.klaasnotfound.com/2016/11/06/making-google-maps-work-with-react/
-    function loadJS(src) {
-      var ref = window.document.getElementsByTagName("script")[0];
-      var script = window.document.createElement("script");
-      script.src = src;
-      script.async = true;
-      script.onerror = function() {
-        document.write("Google Maps can't be loaded");
-      }
-      ref.parentNode.insertBefore(script, ref);
-    }
-    loadJS(
-      "https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyDJ_5QyHVCFBUk-i8Wyn8adRWOMulwJ9Qk&v=3&callback=initMap"
-    );
+      loadJS("https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyDJ_5QyHVCFBUk-i8Wyn8adRWOMulwJ9Qk&v=3&callback=initMap")
   }
+    // https://www.klaasnotfound.com/2016/11/06/making-google-maps-work-with-react/
 
   initMap() {
     //set map parameters
@@ -200,3 +188,13 @@ class App extends Component {
 }
 
 export default App;
+function loadJS(src) {
+  var ref = window.document.getElementsByTagName("script")[0];
+  var script = window.document.createElement("script");
+  script.src = src;
+  script.async = true;
+  script.onerror = function() {
+    document.write("Google Maps can't be loaded");
+  }
+  ref.parentNode.insertBefore(script, ref);
+}
